@@ -1,0 +1,20 @@
+version: '3.7'
+
+services:
+    zero:
+        restart: "no"
+        build: .
+        container_name: zerotier
+        volumes:
+            - zerotier:/var/lib/zerotier-one
+        environment: 
+            - NETWORK_ID=<your_network_id>
+        cap_add: 
+            - SYS_ADMIN
+            - NET_ADMIN
+        devices:
+            - "/dev/net/tun:/dev/net/tun"
+        command: <your_app_command>
+
+volumes:
+    zerotier:
